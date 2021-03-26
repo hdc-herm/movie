@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta name="referrer" content="no-referrer">
 <meta http-equiv="Cache-Control" content="max-age=300" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title  th:text="${key}"> </title>
@@ -21,23 +22,23 @@
 
 <div class="m psearch " id="plist">
 <ul class="list-h clearfix" tpl="2">
-<tr  th:each="item,iterStat:${item}">  
+<tr  th:each="movie,iterStat:${movies}">
 <li class="item-book" bookid="11078102">
 	<div class="p-img">
-		<a target="_blank" th:href="${'/toItemInfo?id='+item.id+''}">
-			<img width="160" height="160" data-img="1" th:src=" ${'getImage?itemUrl='+item.itemUrl+''} "  />
+		<a target="_blank" th:href="@{/user/movieSelectById(id=${movie.id})}">
+			<img width="160" height="160" data-img="1" th:src=" ${movie.mvImg}  "  />
 		</a>
 	</div>
 	<div class="p-name">
-		<a target="_blank" th:href="${'/toItemInfo?id='+item.id+''}">
-			<span th:text="${item.title}"></span>
+		<a target="_blank" th:href="@{/user/movieSelectById(id=${movie.id})}">
+			<span th:text="${movie.mvName}"></span>
 		</a>
 	</div>
 	<div class="p-price">
-		<i>E_Mall价：</i>
-		<strong>￥<span th:text="${item.price}"></span></strong>
+		<i>上映时间：</i>
+		<strong><span th:text="${movie.mvStart}"></span></strong>
 	</div>
-	<div class="service">由 E_Mall 发货</div>
+	<div class="service">环球影视</div>
 	<div class="extra">
 		<span class="star"><span class="star-white"><span class="star-yellow h5">&nbsp;</span></span></span>
 	</div>
@@ -46,17 +47,17 @@
 </ul></div>
 
 <div class="m clearfix" id="bottom_pager">
-<div  id="pagin-btm" class="pagin fr" clstag="search|keycount|search|pre-page2">
-	<a href="toSearch?key=${key}&amp;page=1&amp;rows=12" class="next">上一页</a>
-	<a href="toSearch?key=${key}&amp;page=1&amp;rows=12" class="current">1</a>
-	<a href="toSearch?key=${key}&amp;page=2&amp;rows=12">2</a>
-	<a href="toSearch?key=${key}&amp;page=3&amp;rows=12">3</a>
-	<a href="toSearch?key=${key}&amp;page=4&amp;rows=12">4</a>
-	<a href="toSearch?key=${key}&amp;page=5&amp;rows=12">5</a>
+<!--<div  id="pagin-btm" class="pagin fr" clstag="search|keycount|search|pre-page2">
+	<a href="/user/selectByName?mvName='''+${key}+'''"&amp;page=1&amp;rows=12" class="next">上一页</a>
+	<a href="/user/selectByName?mvName=${key}&amp;page=1&amp;rows=12" class="current">1</a>
+	<a href="/user/selectByName?mvName=${key}&amp;page=2&amp;rows=12">2</a>
+	<a href="/user/selectByName?mvName=${key}&amp;page=3&amp;rows=12">3</a>
+	<a href="/user/selectByName?mvName=${key}&amp;page=4&amp;rows=12">4</a>
+	<a href="/user/selectByName?mvName=${key}&amp;page=5&amp;rows=12">5</a>
 	<span class="text">…</span>
-	<a href="toSearch?key=${key}&amp;page=2&amp;rows=12" class="next">下一页<b></b></a>
+	<a href="/user/selectByName?mvName=${key}&amp;page=2&amp;rows=12" class="next">下一页<b></b></a>
 	<span class="page-skip"><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em></span>
-</div>
+</div>-->
 </div>
 </div>
 <!-- footer start -->
