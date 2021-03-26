@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link href="static/css/Style.css" rel="stylesheet" type="text/css" />
+<head>
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" href="/css/index.css"/>
+		<link rel="stylesheet" href="/css/head.css"/>
+		<link rel="stylesheet" href="/css/foot.css"/>
+		<title>RLShop首页</title>
+	<script type="text/javascript"
+		 src="/js/jquery-easyui-1.4.1/jquery.min.js">
+	</script>
+</head>
+
+
+<body>
+	 <div th:include="head :: header"></div> 
+	
+	
+	<!--e_mall首页身体-->
+		<div id="index">
+			<div id="line1">
+				<img src="/img/index/1.jpg"/>
+			</div>
+			<div id="line2">
+				<img id="line2_1" src="/img/index/2.jpg"/>
+				<img id="line2_2" src="/img/index/3.jpg"/>
+				<img id="line2_3" src="/img/index/4.jpg"/>
+			</div>
+			<div id="line3">
+				<img id="line3_1" src="/img/index/5.jpg"/>
+				<img id="line3_2" src="/img/index/6.jpg"/>
+				<img id="line3_3" src="/img/index/7.jpg"/>
+			</div>
+			<div id="line4">
+				<img src="/img/index/8.jpg"/>
+			</div>
+			
+		</div>
+
+
+ <div th:include="foot :: footer"></div> 
+
+	
+	</body>
+</html>

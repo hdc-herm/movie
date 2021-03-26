@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link href="/css/Style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/css/head.css"/>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="static/css/index.css"/>
+	<link rel="stylesheet" href="static/css/head.css"/>
+	<link rel="stylesheet" href="static/css/foot.css"/>
+	<title>欢迎光临E-MALL电子商城</title>
+	<script type="text/javascript"
+		 src="/js/jquery-easyui-1.4.1/jquery.min.js">
+	</script>
+	
+</head>
+<body>
+<div th:fragment="header">
+<script type="text/javascript" th:inline="javascript">
+	//<![CDATA[ 
+		function search(){
+			var input= document.getElementById("search");
+			var key = input.value;
+			window.location.href="/toSearch?key="+key+"&page=1&rows=12";
+		}
+		//]]>
+	</script>
+<!--e_mall首页头部-->
+<div id="head">
+	<div id="line1">
+	<span th:if="${session.user ==null}">
+		<div id="content">
+			<a href="/toLogin">登陆</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/toRegist">注册</a>
+			 <a id="right1" href="/tonotice" >商城公告</a>
+		</div>
+	</span>
+	<span th:if="${session.user != null} ">
+		<div id="content">
+			欢迎回来，<span th:text="${session.user.userName}"/>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/toUserInfo">个人信息</a>
+			&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/toLogOut">注销</a>
+			<a id="right2" href="/tonotice" >商城公告</a>
+			
+		</div>
+		 
+    </span>
+   
+	</div>
+	
+	<div id="line2">
+		<img src="/img/head/logo.jpg" alt="logo" id="logo"/>
+		<span class="search">
+			<input id="search" type="text" name="#" class="search_inp"/>
+			<input  type="button" value="搜索" class="search_btn"  onclick="search()" ></input>
+		</span>
+		<span class="my_order_cart">
+				<a href="/order">我的订单</a> |
+				<a href="/cart">我的购物车</a>
+		</span>
+	
+	</div>
+
+
+	<div id="line3">
+		<div id="content">
+			<ul>
+				<li><a href="/index">首页</a></li>
+				<li><a href="/toItemList?page=1&amp;type=1">手机数码</a></li>
+				<li><a href="/toItemList?page=1&amp;type=2">电脑平板</a></li>
+				<li><a href="/toItemList?page=1&amp;type=3">服装服饰</a></li>
+				<li><a href="/toItemList?page=1&amp;type=8">运动鞋靴</a></li>
+				<li><a href="/toItemList?page=1&amp;type=4">家用电器</a></li>
+				<li><a href="/toItemList?page=1&amp;type=5">食品材料</a></li>
+				<li><a href="/toItemList?page=1&amp;type=6">图书杂志</a></li>
+				<li><a href="/toItemList?page=1&amp;type=7">医疗保健</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</div>
+
+</div>
+
+	</body>
+</html>

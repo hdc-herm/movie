@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" href="/css/login.css"/>
+		<title>HDCMovies</title>
+		<script type="text/javascript">
+			function zhuce(){
+				window.location.href="/user/regist";
+			}
+		</script>
+	</head>
+	<body>
+		<h1>欢迎登陆超哥电影网站</h1>
+		<form action="/user/signing" method="post">
+			<table>
+				<tr>
+					<td colspan="2" style="color: red; font-size:14px; text-align:center;" th:text="${error}">
+					</td>
+				</tr>
+				<tr>
+					<td class="tdx">用户名:</td>
+					<td>
+						<input th:type="text" name="userName" ></input>
+					</td>
+				</tr>
+				<tr>
+					<td class="tdx">密码:</td>
+					<td><input type="password" name="password"></input></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<!-- <input type="checkbox" name="remember" value="true" 
+					>记住用户名</input> -->
+					<!-- <span th:each="cookie :${#httpServletRequest.getCookies()}" 
+					th:if="${cookie.getName().contains('remember')}">
+					<input type="checkbox" name="remember" value="true"  
+					>记住用户名</input>
+					</span> -->
+					
+						<!-- <input type="checkbox" name="autologin" value="true">30天内自动登陆</input> -->
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">
+						<div id="button">
+							<input type="submit" value="登陆"/>
+							<input type="zhuce" value="     注册" onclick="zhuce()"/>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</form>		
+	</body>
+</html>

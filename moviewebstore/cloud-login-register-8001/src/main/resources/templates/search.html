@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Cache-Control" content="max-age=300" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title  th:text="${key}"> </title>
+<link rel="stylesheet" href="/css/head.css"/>
+	<link rel="stylesheet" href="/css/foot.css"/>
+<link rel="stylesheet" type="text/css" href="/css/base.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/css/psearch20131008.css" media="all" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+</head>
+<body>
+<script type="text/javascript" src="/js/base-2011.js" charset="utf-8"></script>
+<!-- header start -->
+<div th:include="head :: header"></div> 
+<!-- header end -->
+<div class="w main">
+	<div class="crumb">全部结果&nbsp;&gt;&nbsp;<strong><span th:text="${key}"></span></strong></div>
+<div class="clr"></div>
+
+<div class="m psearch " id="plist">
+<ul class="list-h clearfix" tpl="2">
+<tr  th:each="item,iterStat:${item}">  
+<li class="item-book" bookid="11078102">
+	<div class="p-img">
+		<a target="_blank" th:href="${'/toItemInfo?id='+item.id+''}">
+			<img width="160" height="160" data-img="1" th:src=" ${'getImage?itemUrl='+item.itemUrl+''} "  />
+		</a>
+	</div>
+	<div class="p-name">
+		<a target="_blank" th:href="${'/toItemInfo?id='+item.id+''}">
+			<span th:text="${item.title}"></span>
+		</a>
+	</div>
+	<div class="p-price">
+		<i>E_Mall价：</i>
+		<strong>￥<span th:text="${item.price}"></span></strong>
+	</div>
+	<div class="service">由 E_Mall 发货</div>
+	<div class="extra">
+		<span class="star"><span class="star-white"><span class="star-yellow h5">&nbsp;</span></span></span>
+	</div>
+</li>
+</tr>
+</ul></div>
+
+<div class="m clearfix" id="bottom_pager">
+<div  id="pagin-btm" class="pagin fr" clstag="search|keycount|search|pre-page2">
+	<a href="toSearch?key=${key}&amp;page=1&amp;rows=12" class="next">上一页</a>
+	<a href="toSearch?key=${key}&amp;page=1&amp;rows=12" class="current">1</a>
+	<a href="toSearch?key=${key}&amp;page=2&amp;rows=12">2</a>
+	<a href="toSearch?key=${key}&amp;page=3&amp;rows=12">3</a>
+	<a href="toSearch?key=${key}&amp;page=4&amp;rows=12">4</a>
+	<a href="toSearch?key=${key}&amp;page=5&amp;rows=12">5</a>
+	<span class="text">…</span>
+	<a href="toSearch?key=${key}&amp;page=2&amp;rows=12" class="next">下一页<b></b></a>
+	<span class="page-skip"><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em></span>
+</div>
+</div>
+</div>
+<!-- footer start -->
+<div th:include="foot :: footer"></div> 
+<!-- footer end -->
+<script type="text/javascript" src="/js/jquery.hashchange.js"></script>
+<script type="text/javascript" src="/js/search_main.js"></script>
+</body>
+</html>

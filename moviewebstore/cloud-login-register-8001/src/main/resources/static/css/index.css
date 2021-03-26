@@ -1,0 +1,53 @@
+@charset "utf-8";
+{
+	border: 1px solid #999;
+}
+body{
+	margin:0px;
+	font-family:"微软雅黑";
+}
+/*设置每一行的宽度    并居中*/
+#index #line1,#index #line2,#index #line3,#index #line4{
+	width:1200px;
+	margin:0px auto;
+}
+
+/*第一行背景图片已经插入*/
+
+
+
+
+/*第二行*/
+#index #line2{
+	margin-top:8px;
+}
+#index #line2 #line2_2{
+	margin-left:5px;
+}
+#index #line2 #line2_3{
+	margin-left:17px;
+}
+
+
+
+
+/*第三行*/
+#index #line3{
+	margin-top:5px;
+}
+#index #line3 #line3_2{
+	margin-left:5px;
+}
+#index #line3 #line3_3{
+	margin-left:17px;
+}
+
+
+
+
+
+
+/*第四行*/
+#index #line4{
+	margin-top:8px;	
+}

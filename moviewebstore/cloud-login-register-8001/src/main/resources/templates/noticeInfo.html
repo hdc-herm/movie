@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>公告详情页面</title>
+<link  rel="stylesheet" href="/css/notice.css" />
+<link rel="stylesheet" href="/css/head.css"/>
+	<link rel="stylesheet" href="/css/foot.css"/>
+</head>
+<body>
+<div th:include="head :: header"></div> 
+<div id="notice">
+	<div id="context">
+		<h1><span th:text="${notice.noticeTitle}"></span></h1>
+		<br/>
+		<span><span th:text="${notice.noticeContent}"></span></span>
+	</div>
+</div>
+<div th:include="foot :: footer"></div> 
+</body>
+</html>

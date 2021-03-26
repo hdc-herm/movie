@@ -1,0 +1,20 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: cloud-login-register
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+#        namespace: f977b9d1-0061-41f9-ab4f-4e6a2431af77
+#        group: DB_GROUP
+        file-extension: yaml
+        prefix: cloud-server-dbconfig
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html

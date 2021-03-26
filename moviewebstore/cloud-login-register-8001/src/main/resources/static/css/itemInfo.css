@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+#itemInfo_body{
+	width:1200px;
+	margin:0px auto;
+	height:460px;
+}
+#itemInfo_img{
+	float:left;
+	margin-top:10px;
+	width:450px;
+	height:450px;
+	border:1px solid #EED5D2;
+}
+#itemInfo_info{
+	float:left;
+	margin-top:10px;
+	margin-left:40px;
+	width:690px;
+	height:450px;
+}
+#itemInfo_title{
+	font-weight:bold;
+	line-height:20px;
+	margin-top:10px;
+	width:690px;
+	height:70px;
+}
+#itemInfo_sellpoint{
+	color:red;
+	line-height:20px;
+	width:690px;
+	height:70px;
+}
+#itemInfo_toSell{
+	line-height:50px;
+	width:690px;
+	height:70px;
+}
+#itemInfo_price{
+	line-height:50px;
+	width:690px;
+	height:70px;
+}
+#itemInfo_num{
+	line-height:50px;
+	width:690px;
+	height:70px;
+}
+#itemInfo_addCart{
+	line-height:50px;
+	width:690px;
+	height:90px;
+}

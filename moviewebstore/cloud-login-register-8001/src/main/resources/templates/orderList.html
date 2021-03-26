@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>	
+    <title>订单列表页</title>
+    <link href="/css/orderList.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/js/jquery-1.4.2.js"></script>
+    <link rel="stylesheet" href="/css/index.css"/>
+<link rel="stylesheet" href="/css/head.css"/>
+<link rel="stylesheet" href="/css/foot.css"/>
+  </head>
+<body >
+ <div th:include="head :: header"></div> 
+ <tr  th:each="order,iterStat:${orderList}">  
+<dl class="Order_information" >
+			<dt>
+				<h3>订单信息</h3>
+			</dt>
+			<dd>
+				 订单编号：<span th:text="${order.orderId }"></span><br/>
+				 下单时间：<span th:text="${order.orderTime }"></span><br /> 
+				 订单金额：<span th:text="${order.sumPrice}"></span><br/> 
+				 收货地址：<span th:text="${order.address }"></span><br/> 
+				支付状态：<span th:if="${order.payMode=='0' }"><font color="red">未支付</font><br/></span>
+				<span th:if="${order.payMode=='1' }"><font color="green">已支付</font><br/></span>
+				支付方式：<a style="text-decoration: none;color:#00FFFF" th:href="${'/toPay?orderId='+order.orderId+' '}">在线支付</a>
+			</dd>
+		</dl>
+	
+		<table width="1200" border="0" cellpadding="0"
+			cellspacing="1" style="background:#d8d8d8;color:#333333;margin-left:80px">
+			<tr>
+				<th width="276" height="30" align="center" valign="middle" bgcolor="#f3f3f3">商品图片</th>
+				<th width="247" align="center" valign="middle" bgcolor="#f3f3f3">商品名称</th>
+				<th width="231" align="center" valign="middle" bgcolor="#f3f3f3">商品单价</th>
+				<th width="214" align="center" valign="middle" bgcolor="#f3f3f3">购买数量</th>
+				<th width="232" align="center" valign="middle" bgcolor="#f3f3f3">小计</th>
+			</tr>
+	 <tr  th:each="entry,iterStat:${order.itemMap}">  
+			<tr>
+				<td align="center" valign="middle" bgcolor="#FFFFFF">
+					<img th:src="${'getImage?itemUrl= '''+entry.key.itemUrl+''' ' }" width="90" height="105"/>
+				</td>
+				<td align="center" valign="middle" bgcolor="#FFFFFF"><span th:text="${entry.key.title }"></span></td>
+				<td align="center" valign="middle" bgcolor="#FFFFFF"><span th:text="${entry.key.price }"></span>元</td>
+				<td align="center" valign="middle" bgcolor="#FFFFFF"><span th:text="${entry.value }"></span>件</td>
+				<td align="center" valign="middle" bgcolor="#FFFFFF"><span th:text="${entry.value*entry.key.price }"></span>元</td>
+			</tr>
+	</tr>
+		</table>
+		<div class="Order_price">￥<span th:text="${order.sumPrice}"></span>元</div>
+</tr>
+<div th:include="foot :: footer"></div>
+  </body>
+</html>

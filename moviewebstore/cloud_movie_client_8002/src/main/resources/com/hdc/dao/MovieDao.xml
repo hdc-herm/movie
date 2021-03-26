@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdc.dao.MovieDao">
+    <resultMap id="baseMap" type="com.hdc.Movie">
+        <id property="id" column="id"></id>
+        <result property="mvName" column="mv_name"></result>
+        <result property="mvImg" column="mv_img"></result>
+        <result property="mvDirector" column="mv_director"></result>
+        <result property="mvPerformer" column="mv_performer"></result>
+        <result property="mvType" column="mv_type"></result>
+        <result property="mvStart" column="mv_start"></result>
+        <result property="mvTime" column="mv_time"></result>
+        <result property="mvIntroduce" column="mv_introduce"></result>
+        <result property="mvStatus" column="mv_status"></result>
+        <result property="mvLike" column="mv_like"></result>
+    </resultMap>
+
+    <select id="moviePage" resultMap="baseMap">
+        select * from movie limit #{num},#{size}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>购物车</title>
+<link  rel="stylesheet" href="/css/cart.css" />
+<link rel="stylesheet" href="/css/index.css"/>
+<link rel="stylesheet" href="/css/head.css"/>
+<link rel="stylesheet" href="/css/foot.css"/>
+<script type="text/javascript" src="/js/jquery-1.4.2.js" ></script>
+<script type="text/javascript"  th:inline="javascript">
+//<![CDATA[ 
+$(function(){
+	$("#delNum").click(function(){
+		var id = $("#prodId").val();
+		var number = $("#num").val();
+		if(number==1){
+			return;
+		}else{
+			$("#num").val(number*1-1);
+		}
+		var number = $("#num").val();
+		window.location.href="/cartNum?num="+number+"&itemId="+id;
+	});
+	$("#addNum").click(function(){
+		var id = $("#prodId").val();
+		var number = $("#num").val();
+		$("#num").val(number*1+1);
+		var number = $("#num").val();
+		window.location.href="/cartNum?num="+number+"&itemId="+id;
+	});	
+	
+})
+
+//]]>
+</script>
+</head>
+<body>
+<div th:include="head :: header"></div> 
+<div id="cart">
+<!-- 标题信息 -->
+
+		<div id="title">
+	
+			<span id="title_name" >商品</span>
+			<span id="title_price" >单价（元）</span>
+			<span id="title_buynum">数量</span>
+			<span id="title_money">小计（元）</span>
+			<span id="title_del">操作</span>
+		</div>
+<!-- 商品信息 -->
+<c:set var="money" scope="page" value="0"/>
+<tr  th:each="entry,iterStat:${session.cart}">  
+		<div id="prods">
+			<input id="prodId" th:value="${entry.key.id}" style="display:none"/>
+			<img width="90" height="90" th:src=" ${'getImage?itemUrl= '''+entry.key.itemUrl+''' '} "  ></img>
+			<span id="prods_name" th:text="${entry.key.title}"></span>
+			<span id="prods_price" th:text="${entry.key.price}"></span>
+			<span id="prods_buynum"> 
+				<a href="javascript:void(0)" id="delNum"  >-</a>
+				<input id="num" type="text" th:value="${entry.value}" size="4" />
+				<a href="javascript:void(0)" id="addNum" >+</a>
+			</span>
+			<!-- <c:set  var="money" th:value="${money+entry.value*entry.key.price }" scope="page"/> -->
+			<span id="prods_money" th:text="${entry.value*entry.key.price}"></span>
+			<span id="prods_del"><a th:href="${'/delCart?itemId='+entry.key.id+' '}">删除</a></span>
+		</div>
+		</tr>
+	<!-- 总计条 -->
+		<div id="total">
+			<div id="total_1">
+				<!-- <span id="span_1">总价：</span> -->
+				<span id="span_2" th:text="${money}"></span>
+			</div>
+			<div id="total_2">	
+				<a id="goto_order" href="/addOrder">去结算</a>
+			</div>
+		</div>
+
+</div>
+<div th:include="foot :: footer"></div> 
+</body>
+</html>
