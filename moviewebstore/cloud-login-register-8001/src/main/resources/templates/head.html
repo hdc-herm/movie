@@ -27,7 +27,7 @@
 <!--e_mall首页头部-->
 <div id="head">
 	<div id="line1">
-	<span th:if="${session.user ==null}">
+	<!--<span th:if="${session.user ==null}">
 		<div id="content">
 			<a href="/toLogin">登陆</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/toRegist">注册</a>
 			 <a id="right1" href="/tonotice" >商城公告</a>
@@ -42,7 +42,7 @@
 		</div>
 		 
     </span>
-   
+   -->
 	</div>
 	
 	<div id="line2">
@@ -51,26 +51,22 @@
 			<input id="search" type="text" name="#" class="search_inp"/>
 			<input  type="button" value="搜索" class="search_btn"  onclick="search()" ></input>
 		</span>
-		<span class="my_order_cart">
-				<a href="/order">我的订单</a> |
-				<a href="/cart">我的购物车</a>
-		</span>
-	
+
 	</div>
 
 
 	<div id="line3">
 		<div id="content">
 			<ul>
-				<li><a href="/index">首页</a></li>
-				<li><a href="/toItemList?page=1&amp;type=1">手机数码</a></li>
-				<li><a href="/toItemList?page=1&amp;type=2">电脑平板</a></li>
-				<li><a href="/toItemList?page=1&amp;type=3">服装服饰</a></li>
-				<li><a href="/toItemList?page=1&amp;type=8">运动鞋靴</a></li>
-				<li><a href="/toItemList?page=1&amp;type=4">家用电器</a></li>
-				<li><a href="/toItemList?page=1&amp;type=5">食品材料</a></li>
-				<li><a href="/toItemList?page=1&amp;type=6">图书杂志</a></li>
-				<li><a href="/toItemList?page=1&amp;type=7">医疗保健</a></li>
+				<li><a href="/index">全部</a></li>
+				<li><a href="/user/moviePageType?page=1&amp;type=喜剧">喜剧</a></li>
+				<li><a href="/user/moviePageType?page=1&amp;type=爱情">爱情</a></li>
+				<li><a href="/user/moviePageType?page=1&amp;type=恐怖">恐怖</a></li>
+				<li><a href="/user/moviePageType?page=1&amp;type=动画">动画</a></li>
+				<li><a href="/user/moviePageType?page=1&amp;type=犯罪">犯罪</a></li>
+				<li><a href="/user/moviePageType?page=1&amp;type=科幻">科幻</a></li>
+				<li><a href="/user/moviePageType?page=1&amp;type=悬疑">悬疑</a></li>
+				<li><a href="/user/moviePageType?page=1&amp;type=惊悚">惊悚</a></li>
 				
 			</ul>
 		</div>
