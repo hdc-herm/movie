@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -15,9 +16,11 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Accessors(chain = true)
-public class Role implements Serializable {
+public class UserMovie implements Serializable {
 
     private int id;
-    private String roleName;
+    private int mvId;
+    private int userId;
+    private Date startTime;
 
 }

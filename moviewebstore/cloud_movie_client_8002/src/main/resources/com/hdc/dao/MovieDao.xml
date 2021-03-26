@@ -19,5 +19,9 @@
         select * from movie limit #{num},#{size}
     </select>
 
+    <select id="moviePageType" resultMap="baseMap">
+        select * from movie where mv_type like CONCAT('%',#{mvType},'%') limit #{num} , #{size}
+    </select>
+
 
 </mapper>

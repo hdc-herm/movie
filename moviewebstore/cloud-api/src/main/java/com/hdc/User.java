@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Accessors(chain = true)
 public class User implements Serializable {
 
-    private Long id;
+    private int id;
     private String userName;
     private String password;
     private String phone;

@@ -20,10 +20,6 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @Autowired
-    private MovieDao movieDao;
-
-
     /**
      *分页查询电影信息
      * @param num
@@ -36,4 +32,47 @@ public class MovieController {
 
         return new Result().ok(movies);
     }
+
+    /**
+     * 分类分页查询
+     * @param mvType
+     * @param num
+     * @param size
+     * @return
+     */
+    @GetMapping("/moviePageType")
+    public Result moviePageType(String mvType,int num,int size){
+        if (size == 0) {
+            size = 20;
+        }
+        List<Movie> movies = movieService.moviePageType(mvType,num, size);
+        return new Result().ok(movies);
+    }
+
+    /**
+     * 根据类型查询电影
+     * @param mvType
+     * @return
+     */
+    @GetMapping("/movieType")
+    public Result movieType(String mvType){
+        Result result = movieService.movieType(mvType);
+        return result;
+    }
+
+    /**
+     * 根据电影ID查询电影信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/movieSelectById")
+    public Result movieSelectById(int id){
+        Movie movie = movieService.movieSelectById(id);
+        return new Result().ok(movie);
+    }
+
+    @GetMapping
+
+    public Result insertLike(){}
+
 }
