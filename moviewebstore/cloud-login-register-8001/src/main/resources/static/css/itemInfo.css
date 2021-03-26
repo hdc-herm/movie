@@ -2,7 +2,7 @@
 #itemInfo_body{
 	width:1200px;
 	margin:0px auto;
-	height:460px;
+	height:900px;
 }
 #itemInfo_img{
 	float:left;
@@ -23,7 +23,7 @@
 	line-height:20px;
 	margin-top:10px;
 	width:690px;
-	height:70px;
+	height:40px;
 }
 #itemInfo_sellpoint{
 	color:red;

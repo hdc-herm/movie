@@ -52,7 +52,7 @@
 
         <tr th:each="prod,iterStat:${page.list}">
             <div id="prod_div">
-                <a th:href="@{/toMovieInfo(id=${prod.id})}">
+                <a th:href="@{/user/movieSelectById(id=${prod.id})}">
                     <img th:src=" ${prod.mvImg} "></img>
                 </a>
                 <div id="prod_name_div">
