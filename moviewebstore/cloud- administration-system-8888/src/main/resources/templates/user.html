@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <mata name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css"/>
+    <link rel="stylesheet" href="../../static/css/index.css" th:href="@{/static/css/index.css}"/>
+    <title>管理后台</title>
+</head>
+
+<script type="text/javascript" th:inline="javascript">
+    //<![CDATA[
+    function jumpUser(id) {
+        window.location.href = "http://localhost:8001/user/userInfoById?id=" + id;
+    }
+
+	function deleteUser(id) {
+		window.location.href = "/system/userDelete?id=" + id;
+	}
+
+    //]]>
+
+</script>
+<body>
+<!-- 导航部分 -->
+<nav class="ui inverted attached segment m-paddes-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">管理后台</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
+            <a href="/system/index" class="active m-item item m-mobile-hide"><i class="idea icon"></i>用户管理</a>
+            <a href="/system/movie" class="m-item item m-mobile-hide"><i class="tags icon"></i>电影管理</a>
+
+            <div class="right m-itenm  m-mobile-hide menu">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img class="ui avatar image" src="http://unsplash.it/100/100?image=1005"/>
+                        <span>刘小仙儿</span>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="ui menu toggl black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<!-- 二级导航 -->
+<div class="ui menu attached pointing">
+    <div class="ui container">
+        <div class="right menu">
+            <a href="#" class="item">发布</a>
+            <a href="#" class="teal active item">列表</a>
+        </div>
+    </div>
+</div>
+<!-- 中间部分 -->
+<div class="m-container m-paddes-tb-big">
+    <div class="ui container">
+        <div class="ui secondary segment form">
+            <input type="hidden" name="page">
+            <div class="inline fields">
+                <div class="field">
+                    <input type="text" name="title" placeholder="标题"/>
+                </div>
+
+                <div class="field">
+                    <button type="button" id="search-btn" class="ui mini teal button"><i class="search icon"></i>搜索
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="table-container">
+            <table th:fragment="blogList" class="ui compact teal table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>电话</th>
+                    <th>性别</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user,userStart : ${userList}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.userName}"></td>
+                    <td th:text="${user.age}"></td>
+                    <td th:text="${user.phone}"></td>
+                    <td th:text="${user.sex == 0 ? '男':'女'}"></td>
+                    <td>
+                        <a href="javascript:void(0)" th:onclick="jumpUser([[${user.id}]])" class="ui mini teal button">编辑</a>
+                        <a href="javascript:void(0)" th:onclick="deleteUser([[${user.id}]])" class="ui red mini button">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<!-- 底部 -->
+<footer class="ui inverted vertical segment m-paddes-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable mobile reversed grid">
+            <div class="three wide column">
+                <img src="../../static/img/wechar.png" th:src="@{/static/img/wechar.png}"
+                     class="ui runded image  centered" alt="" style="width: 150px;"/>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事（User Story）</a>
+                    <a href="#" class="item">我的博客设计</a>
+                    <a href="#" class="item">spring框架介绍</a>
+                    <a href="#" class="item">springboot框架学习总结</a>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header  m-text-thin m-text-spaced">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">email:13042235307@163.com</a>
+                    <a href="#" class="item"></a>
+                    <a href="#" class="item">QQ：1163055562</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui inverted header  m-text-thin m-text-spaced">Lirenmi</h4>
+                <p class="m-text-lined m-text-thin m-opacity-mini">这是我的个人博客，会分享关于编程，写作，思考相关的任何内容，希望可以给别人带来帮助</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider">
+            <p class="m-text-thin m-text-lined m-paddes-tb-mini m-opacity-tiny">Copyright-2020-2021 lirenmi Disigned by
+                phoebe </p>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+<script>
+    $('.menu.toggl').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('.weichar').popup({
+        popup: $('.weichar-qr'),
+        on: 'hover',
+        position: 'bottom center'
+    });
+    $('.qq').popup();
+    $('.github').popup();
+    $('.ui.dropdown').dropdown({
+        on: 'hover',
+    });
+
+    function page(obj) {
+        $("[name='page']").val($(obj).data("page"));
+        loaddata();
+    }
+
+    $("#search-btn").click(function () {
+        loaddata();
+    });
+
+    function loaddata() {
+        $("#table-container").load("/admin/blogs/search", {
+            title: $("[name='title']").val(),
+            typeId: $("[name='typeId']").val(),
+            recommend: $("[name='recommand']").prop("checked"),
+            page: $("[name='page']").val()
+        });
+    }
+</script>
+</body>
+</html>

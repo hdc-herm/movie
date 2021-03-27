@@ -13,8 +13,8 @@
 			<div class="ui container">
 				<div class="ui inverted secondary stackable menu">
 					<h2 class="ui teal header item">管理后台</h2>
-					<a href="/system/index" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
-					<a href="/system/user" class="active m-item item m-mobile-hide"><i class="idea icon"></i>用户管理</a>
+					<a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
+					<a href="/system/index" class="active m-item item m-mobile-hide"><i class="idea icon"></i>用户管理</a>
 					<a href="/system/movie" class="m-item item m-mobile-hide"><i class="tags icon"></i>电影管理</a>
 				
 					<div class="right m-itenm  m-mobile-hide menu">
@@ -53,30 +53,38 @@
 					<div class="field">
 						<input type="text" name="title" placeholder="标题" />
 					</div>
-<!--					<div class="field">-->
-<!--						<div class="ui selection dropdown">-->
-<!--							<input type="hidden" name="typeId" />-->
-<!--							<i class="dropdown icon"></i>-->
-<!--							<div class="default text ">分类</div>-->
-<!--							<div class="menu">-->
-<!--								<div class="item" data-value="1">错误日志</div>-->
-<!--								<div class="item" data-value="2">开发者手册</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					<div class="field">-->
-<!--						<div class="ui checkbox">-->
-<!--							<input type="checkbox" id="recommand" name="recommand" />-->
-<!--							<label for="recommand">推荐</label>-->
-<!--						</div>-->
-<!--					</div>-->
 					<div class="field">
 						<button type="button" id="search-btn" class="ui mini teal button"><i class="search icon"></i>搜索</button>
 					</div>
 				</div>
 			</div>
 				<div id="table-container">
-					您好，您有得权限是：~~~~
+					<table th:fragment="blogList" class="ui compact teal table">
+						<thead>
+						<tr>
+							<th></th>
+							<th>姓名</th>
+							<th>年龄</th>
+							<th>电话</th>
+							<th>性别</th>
+							<th>操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="user,userStart : ${userList}">
+							<td th:text="${user.id}"></td>
+							<td th:text="${user.userName}"></td>
+							<td th:text="${user.age}"></td>
+							<td th:text="${user.phone}"></td>
+							<td th:text="${user.sex == 0 ? '男':'女'}"></td>
+							<td>
+								<a  href="http://localhost:8001/user/userInfo"  class="ui mini teal button">编辑</a>
+								<a  href="/system/userDelete"  class="ui red mini button">删除</a>
+							</td>
+						</tr>
+
+						</tbody>
+					</table>
 				</div>
 
 			</div>
