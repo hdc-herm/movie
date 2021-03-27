@@ -17,6 +17,87 @@
 			window.location.href = "/system/movieDelete?id=" + id;
 		}
 
+
+		function updateFram(){
+			var flag = true;
+			//非空校验
+			flag = checkNull("userName", "用户名不能为空") && flag;
+			flag = checkNull("passWord", "密码不能为空") && flag;
+			flag = checkNull("passWord2", "确认密码不能为空") && flag;
+			flag = checkNull("name", "姓名不能为空") && flag;
+			flag = checkNull("phone", "手机号不能为空") && flag;
+			flag = checkNull("email", "邮箱不能为空") && flag;
+			flag = checkNull("address", "收货地址不能为空") && flag;
+
+			//两次密码是否一致
+			flag = checkpassWord("passWord", "两次密码不一致") && flag;
+
+			//邮箱格式
+			flag = checkEmail("email", "邮箱格式不正确") && flag;
+
+			return flag;
+		}
+		//校验邮箱格式
+		function checkEmail(name, msg){
+			var email = document.getElementsByName(name)[0].value;
+			setMsg(name, "");
+			checkNull("email", "邮箱不能为空");
+			var reg = /^\w+@\w+(\.\w+)+$/;
+			if(email != "" && !reg.test(email)){
+				setMsg(name, msg);
+				return false;
+			}
+			return true;
+		}
+
+		//校验两次密码是否一致
+		function checkpassWord(name, msg){
+			var psw1 = document.getElementsByName(name)[0].value;
+			var psw2 = document.getElementsByName(name+"2")[0].value;
+			setMsg(name+"2", "");
+			checkNull("passWord2", "确认密码不能为空");
+			if(psw1 != "" && psw2 != "" && psw1 != psw2){
+				setMsg(name+"2", msg);
+				return false;
+			}
+			return true;
+		}
+
+		//校验输入框是否为空
+		function checkNull(name, msg){
+			var obj = document.getElementsByName(name)[0];
+			var value = obj.value;
+			setMsg(name, "");
+			if(value == ""){
+				setMsg(name, msg);
+				return false;
+			}
+			return true;
+		}
+
+		//提示消息
+		function setMsg(name, msg){
+			//alert(msg);
+			document.getElementById(name+"_msg").innerHTML = "<font style='color: red;font-size: 14px;'>"+ msg +"</font>";
+		}
+
+		$(function(){
+			var flag= "${flag}";
+			if(flag=="true"){
+				alert("恭喜你，注册成功！");
+				window.location.href="/toLogin";
+			}
+
+
+			$("#userName").blur(function(){
+				var userName = $("#userName").val();
+				if(!checkNull("userName", "用户名不能为空")){
+					return;
+				}
+				$("#checkuserName").load("/checkUserName",{"userName":userName});
+			});
+		})
+
 		//]]>
 
 	</script>
@@ -72,34 +153,63 @@
 				</div>
 			</div>
 				<div id="table-container">
-					<table th:fragment="blogList" class="ui compact teal table">
-						<thead>
-						<tr>
-							<th></th>
-							<th>名称</th>
-							<th>导演</th>
-							<th>主演</th>
-							<th>类型</th>
-							<th>上映时间</th>
-							<th>片长</th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr th:each="movie,movieStart : ${movieList}">
-							<td th:text="${movie.mvName}"></td>
-							<td th:text="${movie.mvDirector}"></td>
-							<td th:text="${movie.mvPerformer}"></td>
-							<td th:text="${movie.mvType}"></td>
-							<td th:text="${movie.mvStart}"></td>
-							<td th:text="${movie.mvTime}"></td>
-							<td>
-								<a href="javascript:void(0)" th:onclick="jumpMovie([[${movie.id}]])" class="ui mini teal button">编辑</a>
-								<a href="javascript:void(0)" th:onclick="deleteMovie([[${movie.id}]])" class="ui red mini button">删除</a>
-							</td>
-						</tr>
+					<form action="/system/updateMovie" method="POST" onsubmit="return updateFram()">
+						<table>
+							<div id="s">
+							</div>
+							<tr>
+								<td class="tds">电影名称：</td>
+								<td><input id="mvName" type="text" name="mvName" th:value="${movie.mvName}"  />
+								</td>
+							</tr>
+							<tr>
+								<td class="tds">图片地址：</td>
+								<td><input type="text" name="mvImg" th:value="${movie.mvImg}" />
+								</td>
+							</tr>
+							<tr>
+								<td class="tds">导演：</td>
+								<td><input type="text" name="mvDirector" th:value="${movie.mvDirector}" />
+								</td>
+							</tr>
+							<tr>
+								<td class="tds" >主演：</td>
+								<td><input type="text" name="mvPerformer"  th:value="${movie.mvPerformer}"/>
+								</td>
+							</tr>
+							<tr>
+								<td class="tds" >类型：</td>
+								<td><input type="text" name="mvType"  th:value="${movie.mvType}"/>
+								</td>
+							</tr>
 
-						</tbody>
-					</table>
+							<tr>
+								<td class="tds" >上映时间：</td>
+								<td><input type="text" name="mvStart"  th:value="${movie.mvStart}"/>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="tds" >片长：</td>
+								<td><input type="text" name="mvTime"  th:value="${movie.mvTime}"/>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="tds" >简介：</td>
+								<td><input type="text" name="mvIntroduce"  th:value="${movie.mvIntroduce}"/>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="2">
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="submit" th:value="修改电影"/>
+								</td>
+							</tr>
+						</table>
+						<input type="text" name="id" th:value="${movie.id}" style="visibility:hidden"/>
+					</form>
 				</div>
 
 			</div>
