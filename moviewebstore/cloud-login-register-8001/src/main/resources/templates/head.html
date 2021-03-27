@@ -33,16 +33,15 @@
 			 <a id="right1" href="/tonotice" >商城公告</a>
 		</div>
 	</span>
-	<span th:if="${session.user != null} ">
+	   -->
+
+		<span th:if="${session.user == null} ">
 		<div id="content">
-			欢迎回来，<span th:text="${session.user.userName}"/>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/toUserInfo">个人信息</a>
-			&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/toLogOut">注销</a>
-			<a id="right2" href="/tonotice" >商城公告</a>
+			<a id="right2" href="/user/userInfo" >个人中心</a>
 			
 		</div>
 		 
     </span>
-   -->
 	</div>
 	
 	<div id="line2">
