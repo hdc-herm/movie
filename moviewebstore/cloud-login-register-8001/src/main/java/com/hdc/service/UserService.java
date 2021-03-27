@@ -10,4 +10,8 @@ public interface UserService extends IService<User> {
     CodeEnum selectByUser(User user);
 
     CodeEnum userRegister(User user);
+
+    User selectByName(String username);
+
+    int updateUser(User user);
 }

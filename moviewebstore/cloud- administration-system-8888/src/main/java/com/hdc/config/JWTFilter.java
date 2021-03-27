@@ -31,13 +31,22 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
             HttpServletResponse httpServletResponse = (HttpServletResponse) response;
             try {
                 //token为空跳转的请求
-                httpServletResponse.sendRedirect("/system/tokenIsNull");
+                httpServletResponse.sendRedirect("/system/login");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+//        }else {
+//            HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+//            try {
+//                //token为空跳转的请求
+//                httpServletResponse.sendRedirect("/system/tokenIsNull");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
         //如果请求头不存在 Token，则可能是执行登陆操作或者是游客状态访问，无需检查 token，直接返回 true
-        return false;
+        return true;
     }
 
     @Override
@@ -48,11 +57,11 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
         // 提交给realm进行登入，如果错误他会抛出异常并被捕获
         getSubject(request, response).login(jwtToken);//开启验证和授权
         // 如果没有抛出异常则代表登入成功，返回true
-        return true;
+        return false;
     }
 
     /**
-     * token错误超市等跳转到 /system/unauthorized/**
+     * token错误超时等跳转到 /system/unauthorized/**
      */
     private void responseError(ServletResponse response, String message) {
         try {

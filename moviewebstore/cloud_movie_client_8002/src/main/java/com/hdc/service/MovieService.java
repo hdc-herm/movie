@@ -13,7 +13,11 @@ public interface MovieService extends IService<Movie> {
 
     Result movieType(String mvType);
 
-    List<Movie> moviePageType(String mvType, int num, int size);
+    List<Movie> moviePageType(String mvType);
 
     Movie movieSelectById(int id);
+
+    List<Movie> selectByName(String mvName);
+
+    List<Movie> myLikeMovie(int userId);
 }

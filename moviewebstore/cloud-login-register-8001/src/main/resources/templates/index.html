@@ -1,54 +1,55 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<link href="static/css/Style.css" rel="stylesheet" type="text/css" />
+<link href="http://localhost:8001/css/Style.css" rel="stylesheet" type="text/css" />
 <head>
 		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" href="/css/index.css"/>
-		<link rel="stylesheet" href="/css/head.css"/>
-		<link rel="stylesheet" href="/css/foot.css"/>
+		<link rel="stylesheet" href="http://localhost:8001/css/index.css"/>
+		<link rel="stylesheet" href="http://localhost:8001/css/head.css"/>
+		<link rel="stylesheet" href="http://localhost:8001/css/foot.css"/>
 		<title>全球影城首页</title>
 	<script type="text/javascript"
-		 src="/js/jquery-easyui-1.4.1/jquery.min.js">
+		 src="http://localhost:8001/js/jquery-easyui-1.4.1/jquery.min.js">
 	</script>
 </head>
 
 
 <body>
 	 <div th:include="head :: header"></div> 
-	
+
+	 <a href="/user/find">服务降级演示接口</a>
 	
 	<!--e_mall首页身体-->
 		<div id="index">
 			<div id="line1">
 				<a th:href="@{/user/movieSelectById(id=1)}">
-				<img src="/img/index/1.jpg"/>
+				<img src="http://localhost:8001/img/index/1.jpg"/>
 				</a>
 			</div>
 			<div id="line2">
 				<a th:href="@{/user/movieSelectById(id=20)}">
-				<img id="line2_1" src="/img/index/2.jpg"/>
+				<img id="line2_1" src="http://localhost:8001/img/index/2.jpg"/>
 				</a>
 				<a th:href="@{/user/movieSelectById(id=124)}">
-				<img id="line2_2" src="/img/index/3.jpg"/>
+				<img id="line2_2" src="http://localhost:8001/img/index/3.jpg"/>
 				</a>
 				<a th:href="@{/user/movieSelectById(id=17)}">
-				<img id="line2_3" src="/img/index/4.jpg"/>
+				<img id="line2_3" src="http://localhost:8001/img/index/4.jpg"/>
 				</a>
 			</div>
 			<div id="line3">
 				<a th:href="@{/user/movieSelectById(id=12)}">
-				<img id="line3_1" src="/img/index/5.jpg"/>
+				<img id="line3_1" src="http://localhost:8001/img/index/5.jpg"/>
 				</a>
 				<a th:href="@{/user/movieSelectById(id=64)}">
-				<img id="line3_2" src="/img/index/6.jpg"/>
+				<img id="line3_2" src="http://localhost:8001/img/index/6.jpg"/>
 				</a>
 				<a th:href="@{/user/movieSelectById(id=70)}">
-				<img id="line3_3" src="/img/index/7.jpg"/>
+				<img id="line3_3" src="http://localhost:8001/img/index/7.jpg"/>
 				</a>
 			</div>
 			<div id="line4">
 				<a th:href="@{/user/movieSelectById(id=111)}">
-				<img src="/img/index/8.jpg"/>
+				<img src="http://localhost:8001/img/index/8.jpg"/>
 				</a>
 			</div>
 			

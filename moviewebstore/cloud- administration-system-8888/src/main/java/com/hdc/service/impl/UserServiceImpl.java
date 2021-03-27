@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 
 @Service
@@ -38,5 +39,11 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
             return new Result(400,"用户名不存在!");
         }
 
+    }
+
+    @Override
+    public List<User> selectUserS() {
+        List<User> users = userDao.selectList(new QueryWrapper<User>());
+        return users;
     }
 }

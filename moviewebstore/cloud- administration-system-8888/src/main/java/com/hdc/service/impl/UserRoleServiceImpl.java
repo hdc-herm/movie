@@ -18,12 +18,13 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleDao, UserRole> impl
     @Autowired
     private UserRoleDao userRoleDao;
 
-    public List<Long> selectByUserId(Long userId) {
+    public List<Integer> selectByUserId(int userId) {
         List<UserRole> userRoles = userRoleDao.selectList(new QueryWrapper<UserRole>().eq("user_id", userId));
         if (!CollectionUtils.isEmpty(userRoles)){
-            List<Long> roleIds = userRoles.stream().map(UserRole::getRoleId).collect(Collectors.toList());
+            List<Integer> roleIds = userRoles.stream().map(UserRole::getRoleId).collect(Collectors.toList());
             return roleIds;
         }
         return null;
     }
+
 }

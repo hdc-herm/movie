@@ -7,9 +7,13 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+import java.util.List;
+
+@Controller
 @RequestMapping("system")
 public class SystemController {
 
@@ -28,20 +32,31 @@ public class SystemController {
      * @param user
      * @return
      */
-    @PostMapping("/login")
-    public Result login(User user) {
+    @PostMapping("/signing")
+    public String login(User user, Model model) {
         Result result = userServicel.find(user);
-        return result;
+        if (result.getCode() == 200) {
+            return "index";
+        }
+        model.addAttribute("error",result.getMessage());
+        return "login";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 
     /**
      * 后台管理系统首页
      * @return
      */
-    @RequiresRoles("admin")
+//    @RequiresRoles("admin")
     @GetMapping("/index")
-    public Result index(){
-        return new Result(200,"这是后台系统首页");
+    public String index(Model model){
+        List<User> users = userServicel.selectUserS();
+        model.addAttribute("userList",users);
+        return "index";
     }
 
     /**
@@ -53,11 +68,5 @@ public class SystemController {
     public Result unauthorized(@PathVariable("message") String message){
         return new Result(3003,message);
     }
-
-    @GetMapping("/tokenIsNull")
-    public Result tokenIsNull(){
-        return new Result(3005,"请先登录，token为空！");
-    }
-
 
 }

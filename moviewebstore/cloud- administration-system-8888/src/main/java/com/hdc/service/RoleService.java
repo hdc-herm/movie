@@ -8,5 +8,5 @@ import java.util.Set;
 
 public interface RoleService extends IService<Role> {
 
-    Set<String> selectByIds(List<Long> roleIdlist);
+    Set<String> selectByIds(List<Integer> roleIdlist);
 }

@@ -6,5 +6,5 @@ import com.hdc.UserRole;
 import java.util.List;
 
 public interface UserRoleService extends IService<UserRole> {
-    List<Long> selectByUserId(Long userId);
+    List<Integer> selectByUserId(int userId);
 }

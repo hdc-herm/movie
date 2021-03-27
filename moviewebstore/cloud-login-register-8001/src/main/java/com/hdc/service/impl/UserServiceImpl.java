@@ -27,6 +27,8 @@ public class UserServiceImpl extends ServiceImpl<UserDao,User> implements UserSe
             //根据用户名查询用户，失败返回该用户不存在
             if (user1 == null){
                 return CodeEnum.loginUserNull;
+            }else if (user1.getStatus() == 1) {
+                return CodeEnum.loginUserFrozen;
             }else if (user1.getPassword().equals(user.getPassword()) ){
                 //用户名密码正确成功登录
                 return CodeEnum.loginSuccess;
@@ -45,5 +47,17 @@ public class UserServiceImpl extends ServiceImpl<UserDao,User> implements UserSe
            userDao.insert(user);
            return CodeEnum.registerSuccess;
         }
+    }
+
+    @Override
+    public User selectByName(String username) {
+        User user = userDao.selectOne(new QueryWrapper<User>().eq("user_name", username));
+        return user;
+    }
+
+    @Override
+    public int updateUser(User user) {
+        int i = userDao.updateById(user);
+        return i;
     }
 }

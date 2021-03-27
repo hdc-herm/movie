@@ -51,7 +51,7 @@ public class MyRealm extends AuthorizingRealm {
         //查询用户
         User user = userService.getOne(new QueryWrapper<User>().eq("user_name",username));
         //用户对应的角色Id
-        List<Long> RoleIdlist = userRoleService.selectByUserId(user.getId());
+        List<Integer> RoleIdlist = userRoleService.selectByUserId(user.getId());
         //角色名称集合
         Set<String> roleNames = roleService.selectByIds(RoleIdlist);
         SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();

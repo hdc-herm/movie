@@ -64,6 +64,15 @@ public class JWTUtil {
         } catch (JWTDecodeException e) {
             return null;
         }
-
     }
+
+    public static Integer getUserId(String token){
+        try {
+            DecodedJWT jwt = JWT.decode(token);
+            return jwt.getClaim("userId").asInt();
+        } catch (JWTDecodeException e) {
+            return null;
+        }
+    }
+
 }

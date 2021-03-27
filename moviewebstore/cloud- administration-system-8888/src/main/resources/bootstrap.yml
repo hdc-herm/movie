@@ -14,3 +14,6 @@ spring:
         server-addr: localhost:8848
         prefix: cloud-server-dbconfig
         file-extension: yaml
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html

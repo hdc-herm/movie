@@ -12,5 +12,5 @@ public interface MovieDao extends BaseMapper<Movie> {
 
     List<Movie> moviePage(@Param("num") int num, @Param("size") int size);
 
-    List<Movie> moviePageType(@Param("mvType") String mvType, @Param("num") int num, @Param("size") int size);
+    List<Movie> moviePageType(@Param("mvType") String mvType);
 }

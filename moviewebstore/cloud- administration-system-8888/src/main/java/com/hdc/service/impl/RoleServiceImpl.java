@@ -19,7 +19,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
     private RoleDao roleDao;
 
     @Override
-    public Set<String> selectByIds(List<Long> roleIdlist) {
+    public Set<String> selectByIds(List<Integer> roleIdlist) {
         List<Role> roles = roleDao.selectList(new QueryWrapper<Role>().in("id", roleIdlist));
         Set<String> collect = roles.stream().map(Role::getRoleName).collect(Collectors.toSet());
         return collect;
