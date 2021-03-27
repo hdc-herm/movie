@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>电影列表</title>
+    <title>收藏列表</title>
     <link href="/css/prodList.css" rel="stylesheet" type="text/css"/>
     <link href="/css/page.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="/css/head.css"/>
@@ -15,9 +15,9 @@
         function changePageA(page, type) {
             var pageL = [[${page.pages}]];
             if (page <= 1) {
-                window.location.href = "/user/moviePageType?page=1&type=" + type;
+                window.location.href = "/user/getCollect?page=1";
             } else {
-                window.location.href = "/user/moviePageType?page=" + page + "&type=" + type;
+                window.location.href = "/user/getCollect?page=" + page;
             }
         }
 
@@ -29,7 +29,7 @@
                 obj.value = [[${page.pageNum}]];
                 return;
             }
-            window.location.href = "/user/moviePageType?page=" + page + "&type=" + type;
+            window.location.href = "/user/getCollect?page=" + page;
         }
 
         //]]>
@@ -47,9 +47,6 @@
 
     <div id="prod_content">
 
-        <!-- <c:forEach items="${page.list }" var="prod">
-            <c:set var="type" value="${prod.itemType}" scope="page"></c:set> -->
-
         <tr th:each="prod,iterStat:${page.list}">
             <div id="prod_div">
                 <a th:href="@{/user/movieSelectById(id=${prod.id})}">
@@ -59,11 +56,6 @@
                     《
                     <td th:text="${prod.mvName}"></td>
                     》
-                </div>
-                <div id="prod_name_div">
-
-                    <a th:href="@{/user/addCollect(mvId=${prod.id})}">收藏</a>
-
                 </div>
                 <br>
                 <div id="prod_name_div">
@@ -77,11 +69,11 @@
     <div id="fy_div">
         共【<span style=" color:red"><span th:text="${page.total}"></span></span>】条记录 共【<span style="color:red"><span
             th:text="${page.pages}"></span></span>】页
-        <a href="javascript:void(0)" th:onclick="changePageA(1,[[${type}]])">首页</a>
-        <a href="javascript:void(0)" th:onclick="changePageA([[${page.prePage}]],[[${type}]])}">上一页</a>
-        <a href="#" th:onclick="changePageA([[${page.nextPage}]],[[${type}]])">下一页</a>
-        <a href="javascript:void(0)" th:onclick="changePageA([[${page.pages}]],[[${type}]])">尾页</a>
-        跳转到<input id="jump" type="text" th:value="${page.pageNum}" th:onblur="changePageA([[${type}]]"/>页
+        <a href="javascript:void(0)" th:onclick="changePageA(1)">首页</a>
+        <a href="javascript:void(0)" th:onclick="changePageA([[${page.prePage}]])">上一页</a>
+        <a href="#" th:onclick="changePageA([[${page.nextPage}]])">下一页</a>
+        <a href="javascript:void(0)" th:onclick="changePageA([[${page.pages}]])">尾页</a>
+        跳转到<input id="jump" type="text" th:value="${page.pageNum}"/>页
     </div>
 </div>
 
