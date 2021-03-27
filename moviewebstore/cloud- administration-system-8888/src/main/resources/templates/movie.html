@@ -9,6 +9,16 @@
 	</head>
 	<script type="text/javascript" th:inline="javascript">
 		//<![CDATA[
+
+		function changePageA(page) {
+			var pageL = [[${page.pages}]];
+			if (page <= 1) {
+				window.location.href = "/system/moviePage?page=1";
+			} else {
+				window.location.href = "/system/moviePage?page=" + page;
+			}
+		}
+
 		function jumpMovie(id) {
 			window.location.href = "/system/movieInfo?id=" + id;
 		}
@@ -100,6 +110,16 @@
 
 						</tbody>
 					</table>
+					<div style="clear: both"></div>
+					<div id="fy_div">
+						共【<span style=" color:red"><span th:text="${page.total}"></span></span>】条记录 共【<span style="color:red"><span
+							th:text="${page.pages}"></span></span>】页
+						<a href="javascript:void(0)" th:onclick="changePageA(1)">首页</a>
+						<a href="javascript:void(0)" th:onclick="changePageA([[${page.prePage}]]">上一页</a>
+						<a href="#" th:onclick="changePageA([[${page.nextPage}]]">下一页</a>
+						<a href="javascript:void(0)" th:onclick="changePageA([[${page.pages}]])">尾页</a>
+						跳转到<input id="jump" type="text" th:value="${page.pageNum}" />页
+					</div>
 				</div>
 
 			</div>
